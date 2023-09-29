@@ -1,11 +1,28 @@
-let blockItems = document.querySelectorAll(".talentTreeItem");
+const skillTreeItem = document.querySelectorAll(".talentTreeItem");
+let skillPoint = 2;
 
-let changeShadow = (event) => {
+const checkSkillPoints = () => {
+  if (skillPoint > 0) {
+    skillTreeItem.forEach((item) => {
+      item.addEventListener("click", onBlockClick);
+    });
+    skillPoint = skillPoint - 1;
+  } else {
+    console.log("Немає більше скілл-поінтів");
+    skillTreeItem.forEach((item) => {
+      item.removeEventListener("click", onBlockClick);
+    });
+  }
+};
+
+const onBlockClick = (event) => {
   let target = event.currentTarget;
-  target.style.boxShadow = "rgba(3, 102, 214, 0.3) 0px 0px 0px 3px";
-  
+  target.classList.add("activeShadowBorder");
+  skillTreeItem.forEach((item) => {
+    item.removeEventListener("click", onBlockClick);
+  });
 }
 
-blockItems.forEach((item) => {
-  item.addEventListener("click", changeShadow)
+skillTreeItem.forEach((item) => {
+  item.addEventListener("click", checkSkillPoints);
 });
