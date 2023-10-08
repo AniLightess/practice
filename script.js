@@ -1,28 +1,14 @@
-const skillTreeItem = document.querySelectorAll(".talentTreeItem");
-let skillPoint = 2;
+const skill_tree_item = document.querySelectorAll(".talent_tree_item");
+let skill_point = 1;
 
-const checkSkillPoints = () => {
-  if (skillPoint > 0) {
-    skillTreeItem.forEach((item) => {
-      item.addEventListener("click", onBlockClick);
-    });
-    skillPoint = skillPoint - 1;
-  } else {
-    console.log("Немає більше скілл-поінтів");
-    skillTreeItem.forEach((item) => {
-      item.removeEventListener("click", onBlockClick);
-    });
-  }
+const onSkill_tree_item_click_style = (event) => {
+	let target = event.currentTarget;
+	if (skill_point > 0) {
+		target.classList.add("active_shadow_border");
+		skill_point--;
+	}
 };
 
-const onBlockClick = (event) => {
-  let target = event.currentTarget;
-  target.classList.add("activeShadowBorder");
-  skillTreeItem.forEach((item) => {
-    item.removeEventListener("click", onBlockClick);
-  });
-}
-
-skillTreeItem.forEach((item) => {
-  item.addEventListener("click", checkSkillPoints);
+skill_tree_item.forEach((item) => {
+	item.addEventListener("click", onSkill_tree_item_click_style);
 });
