@@ -6,9 +6,11 @@ const onSkill_tree_item_click_style = (event) => {
 	if (target.classList.contains("active_shadow_border")) {
 		target.classList.remove("active_shadow_border");
 		skill_point++;
+    console.log(skill_point, "додався скілл поінт");
 	} else if (skill_point > 0) {
 		target.classList.add("active_shadow_border");
 		skill_point--;
+    console.log(skill_point, "віднявся скілл поінт");
 	}
 };
 
